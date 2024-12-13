@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import "../styles/styles.css";
 import { Link } from "react-router-dom";
+import "../styles/styles.css";
 import NavBar from "../components/NavBar";
 
 const SavedRecipesPage = () => {
@@ -14,13 +14,14 @@ const SavedRecipesPage = () => {
         );
         const data = await response.json();
 
-        if (data) {
-          const savedList = Object.keys(data).map((key) => ({
-            id: key, // Save the unique database key for removing the recipe later
-            ...data[key],
-          }));
-          setSavedRecipes(savedList);
-        }
+        // Convert the saved recipes into an array for easy rendering
+        const recipeList = data
+          ? Object.keys(data).map((key) => ({
+              id: key,
+              ...data[key],
+            }))
+          : [];
+        setSavedRecipes(recipeList);
       } catch (error) {
         console.error("Error fetching saved recipes:", error);
       }
@@ -29,28 +30,22 @@ const SavedRecipesPage = () => {
     fetchSavedRecipes();
   }, []);
 
-  // Function to handle Unsave
-  const handleUnsave = async (recipeId) => {
+  const handleUnsave = async (id) => {
     try {
-      // Find the database key for the recipe to remove
-      const recipeToRemove = savedRecipes.find((recipe) => recipe.ID === recipeId);
-      if (!recipeToRemove) return;
-
+      // Remove the recipe from the saved section in the database
       await fetch(
-        `https://gogreen-b1a47-default-rtdb.firebaseio.com/Saved/${recipeToRemove.id}.json`,
+        `https://gogreen-b1a47-default-rtdb.firebaseio.com/Saved/${id}.json`,
         {
           method: "DELETE",
         }
       );
 
-      // Remove the recipe locally
+      // Update the local state to reflect the changes
       setSavedRecipes((prevRecipes) =>
-        prevRecipes.filter((recipe) => recipe.ID !== recipeId)
+        prevRecipes.filter((recipe) => recipe.id !== id)
       );
-
-      alert("Recipe removed from saved recipes!");
     } catch (error) {
-      console.error("Error removing recipe:", error);
+      console.error("Error unsaving the recipe:", error);
     }
   };
 
@@ -60,26 +55,26 @@ const SavedRecipesPage = () => {
       <div className="recipe-cards">
         {savedRecipes.map((recipe) => (
           <div key={recipe.id} className="recipe-card">
-            <Link to={`/recipe/${recipe.id}`} className="recipe-card-link"></Link>
-            <img
-              src={recipe.Picture}
-              alt={recipe.Name}
-              className="recipe-card-image"
-            />
-            <div className="recipe-card-content">
-              <h4 className="recipe-card-title">{recipe.Name}</h4>
-              <div className="recipe-card-details">
-                <span>🕒 {recipe.TimeOfCooking}</span>
-                <span>🍴 {recipe.NumberOfIngredients} ingredients</span>
+            <Link to={`/recipe/${recipe.id}`} className="recipe-card-link">
+              <img
+                src={recipe.Picture}
+                alt={recipe.Name}
+                className="recipe-card-image"
+              />
+              <div className="recipe-card-content">
+                <h4 className="recipe-card-title">{recipe.Name}</h4>
+                <div className="recipe-card-details">
+                  <span>🕒 {recipe.TimeOfCooking}</span>
+                  <span>🍴 {recipe.NumberOfIngredients} ingredients</span>
+                </div>
               </div>
-              
-              <button
-                className="save-button unsave"
-                onClick={() => handleUnsave(recipe.ID)}
-              >
-                Unsave
-              </button>
-            </div>
+            </Link>
+            <button
+              className="save-button unsave"
+              onClick={() => handleUnsave(recipe.id)}
+            >
+              Unsave
+            </button>
           </div>
         ))}
       </div>

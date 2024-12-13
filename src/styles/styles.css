@@ -204,23 +204,42 @@ button:active {
 }
 
 .meal-item {
+  text-decoration: none; /* Remove underline */
+  color: inherit; /* Keep the text color consistent */
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  margin-bottom: 15px;
-  border-bottom: 1px solid #ddd;
-  padding-bottom: 10px;
+  margin-bottom: 16px;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  transition: box-shadow 0.3s;
+}
+
+.meal-item:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a hover effect */
 }
 
 .meal-image {
   width: 60px;
   height: 60px;
   border-radius: 8px;
+  margin-right: 16px;
 }
 
 .meal-details {
-  flex-grow: 1;
-  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.meal-details h4 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.meal-details p {
+  margin: 4px 0 0 0;
+  font-size: 14px;
+  color: #666;
 }
 
 .meal-section {

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import '../styles/styles.css';
-import NavBar from '../components/NavBar';
+import { Link } from "react-router-dom";
+import "../styles/styles.css";
+import NavBar from "../components/NavBar";
 
 const MealPlanPage = () => {
   const [mealPlan, setMealPlan] = useState(null);
@@ -44,7 +45,9 @@ const MealPlanPage = () => {
       <div className="meal-plan-container">
         {Object.keys(mealPlan).map((mealType, index) => (
           <div key={index} className="meal-section">
-            <h3>{mealType}  <button className="more-options">...</button></h3>
+            <h3>
+              {mealType} <button className="more-options">...</button>
+            </h3>
             {Object.values(mealPlan[mealType]).map((meal, mealIndex) => {
               if (!meal || !meal.ID) return null; // Skip null or undefined meals
               return <MealItem key={meal.ID || mealIndex} meal={meal} />;
@@ -52,6 +55,7 @@ const MealPlanPage = () => {
           </div>
         ))}
       </div>
+      <NavBar />
     </div>
   );
 };
@@ -60,19 +64,15 @@ const MealItem = ({ meal }) => {
   if (!meal) return null; // Additional safeguard
 
   return (
-    <div className="meal-item">
-        
+    <Link to={`/recipe/${meal.ID}`} className="meal-item">
       <img src={meal.Picture} alt={meal.Name} className="meal-image" />
-      
       <div className="meal-details">
         <h4>{meal.Name}</h4>
         <p>
           🕒 {meal.TimeOfCooking} • 🍴 {meal.NumberOfIngredients} ingredients
         </p>
       </div>
-      
-      <NavBar />
-    </div>
+    </Link>
   );
 };
 
