@@ -266,6 +266,97 @@ button:active {
   left: -20px; /* Adjust this value to move further left */
 }
 
+.delete-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: #ff0000;
+  margin-left: 10px;
+}
+
+.delete-button:hover {
+  transform: scale(1.1);
+}
+
+/* Floating Button Container */
+.floating-button-container {
+  position: fixed;
+  bottom: 80px; /* Distance from the bottom of the screen */
+  right: 600px; /* Distance from the right side of the screen */
+  z-index: 1000; /* Ensure it appears above other elements */
+  align-items: center;
+}
+
+.floating-button {
+  background-color: #4caf50; /* Green color for the button */
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease-in-out;
+}
+
+.floating-button:hover {
+  transform: scale(1.1); /* Slight zoom effect on hover */
+}
+
+.floating-options {
+  position: absolute;
+  bottom: 80px; /* Distance above the floating button */
+  right: 0;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1001; /* Ensure it appears above the button */
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.floating-option {
+  padding: 10px 15px;
+  background-color: white;
+  border: none;
+  text-align: left;
+  font-size: 16px;
+  color: #4caf50;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.floating-option:hover {
+  background-color: #f1f1f1; /* Light grey background on hover */
+  color: #4caf50;
+}
+
+
+.meal-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.delete-button {
+  background: none;
+  border: none;
+  font-size: 16px;
+  color: #ff4d4d;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.delete-button:hover {
+  color: #d11a2a;
+}
+
 
 
 .back-button {
@@ -629,6 +720,7 @@ button:active {
   padding: 20px;
   background-color: #fff;
   color: #333;
+  text-align: center;
 }
 
 .recipe-cards {
@@ -681,6 +773,81 @@ button:active {
   background-color: #dc3545; /* Red for Unsave */
   color: white;
 }
+
+/*SHOPPING LIST */
+/* Shopping List Page */
+.shopping-list-page {
+  max-width: 390px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+}
+
+.search-container {
+  margin-bottom: 20px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.ingredients-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ingredient-item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.ingredient-image {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.ingredient-item span {
+  flex-grow: 1;
+  margin-right: 10px;
+}
+
+.ingredient-item input[type="checkbox"] {
+  margin-left: 0; /* Ensure checkbox starts at the very left */
+  margin-right: auto; /* Push content to the right */
+  transform: scale(1.5); /* Scale the checkbox */
+  transform-origin: left; /* Align the scaling with the left side */
+  cursor: pointer; /* Change cursor to pointer for better UX */
+}
+
+
+.ingredient-details {
+  flex-grow: 1;
+}
+
+.ingredient-name {
+  font-weight: bold;
+  font-size: 16px;
+  display: block;
+}
+
+.ingredient-quantity {
+  color: #888;
+  font-size: 14px;
+}
+
+.checkbox {
+  width: 30px;
+  height: 30px;
+}
+
 
 
 

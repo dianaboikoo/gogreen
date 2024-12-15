@@ -4,6 +4,7 @@ import MealPlanPage from "./pages/MealPlanPage";
 import SearchPage from "./pages/SearchPage";
 import AccountPage from "./pages/AccountPage";
 import SavedRecepiesPage from "./pages/SavedRecipiesPage";
+import ShoppingList from "./pages/ShoppingList"
 
 
 
@@ -16,6 +17,7 @@ function App() {
         <Route path="/search" element={<SearchPage />} />
         <Route path="/account" element={<AccountPage />} />
         <Route path="/saved" element={<SavedRecepiesPage />} />
+        <Route path="/shoppinglist" element={<ShoppingList/>} />
       </Routes>
     </main>
   );

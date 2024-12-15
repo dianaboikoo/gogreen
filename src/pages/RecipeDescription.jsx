@@ -68,32 +68,34 @@ const RecipeDescription = () => {
     }
   };
 
-  const handlePlanMeal = async (mealType) => {
-    try {
-      const mealData = {
-        ID: recipe.ID,
-        Name: recipe.Name,
-        Picture: recipe.Picture,
-        TimeOfCooking: recipe.TimeOfCooking,
-        Level: recipe.Level,
-        NumberOfIngredients: recipe.NumberOfIngredients,
-      };
+ const handlePlanMeal = async (mealType) => {
+  try {
+    const mealData = {
+      ID: recipe.ID,
+      Name: recipe.Name,
+      Picture: recipe.Picture,
+      TimeOfCooking: recipe.TimeOfCooking,
+      Level: recipe.Level,
+      NumberOfIngredients: recipe.NumberOfIngredients,
+      Ingredients: recipe.Ingredients, // Include all ingredients here
+    };
 
-      await fetch(
-        `https://gogreen-b1a47-default-rtdb.firebaseio.com/MealPlan/${mealType}.json`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(mealData),
-        }
-      );
+    await fetch(
+      `https://gogreen-b1a47-default-rtdb.firebaseio.com/MealPlan/${mealType}.json`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(mealData),
+      }
+    );
 
-      alert(`${recipe.Name} added to ${mealType}!`);
-      setShowOverlay(false);
-    } catch (error) {
-      console.error("Error adding meal to database:", error);
-    }
-  };
+    alert(`${recipe.Name} added to ${mealType}!`);
+    setShowOverlay(false);
+  } catch (error) {
+    console.error("Error adding meal to database:", error);
+  }
+};
+
 
   if (!recipe) {
     return <p>Loading...</p>;
