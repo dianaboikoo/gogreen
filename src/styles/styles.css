@@ -23,17 +23,17 @@
 .recipe-details {
   display: flex;
   justify-content: center;
-  gap: 10px;
+  gap: 20px;
   margin-top: 10px;
 }
 
 .buttons {
-  margin-top: 10px;
+  margin-top: 20px;
 }
 
 .save-btn,
 .plan-btn {
-  padding: 10px 20px;
+  padding: 10px 10px;
   margin: 5px;
   border: none;
   border-radius: 5px;
@@ -69,22 +69,34 @@
   font-weight: bold;
 }
 
-.tab-content {
-  padding: 20px;
+.tab-content ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .ingredient-item {
   display: flex;
   align-items: center;
+  gap: 10px;
   margin-bottom: 10px;
+  text-align: left; /* Align content to the left */
 }
 
 .ingredient-image {
   width: 40px;
   height: 40px;
-  border-radius: 50%;
-  margin-right: 10px;
+  object-fit: contain;
+  border-radius: 5px;
+  flex-shrink: 0;
 }
+
+.ingredient-item span {
+  font-size: 16px;
+  color: #333;
+  flex-grow: 1;
+}
+
 
 .nutrition-table {
   width: 100%;
@@ -173,170 +185,174 @@ button:active {
   background-color: #aaa;
 }
 
-
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow-x: hidden; /* Prevent horizontal scrollbars */
+}
+.meal-plan-container, .meal-plan-page {
+  position: relative; /* Ensure relative positioning */
+  overflow: visible; /* Allow the button to overflow */
+}
 
 /*MEAL PLAN */
 .meal-plan-page {
   max-width: 390px;
   margin: 0 auto;
   font-family: Arial, sans-serif;
+  position: relative;
+  overflow: visible;
 }
 
 .meal-plan-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
+}
+
+.date-display{
+    text-align: center;
 }
 
 .nav-button {
   background: none;
   border: none;
-  font-size: 18px;
+  font-size: 24px;
 }
 
 .meal-plan-container {
-  padding: 20px;
+  padding: 16px;
 }
 
-.meal-section {
-  margin-bottom: 20px;
-}
 
 .meal-item {
-  text-decoration: none; /* Remove underline */
-  color: inherit; /* Keep the text color consistent */
   display: flex;
   align-items: center;
-  margin-bottom: 16px;
-  padding: 8px;
+  gap: 10px;
+  padding: 10px;
   border: 1px solid #ddd;
-  border-radius: 8px;
-  transition: box-shadow 0.3s;
+  border-radius: 10px;
+  background-color: #fff;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
 }
 
 .meal-item:hover {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a hover effect */
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.meal-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  flex-grow: 1;
 }
 
 .meal-image {
-  width: 60px;
-  height: 60px;
+  width: 80px;
+  height: 80px;
   border-radius: 8px;
-  margin-right: 16px;
+  object-fit: cover;
+  flex-shrink: 0;
 }
 
 .meal-details {
-  display: flex;
-  flex-direction: column;
+  text-align: left;
+  margin-left: 10px;
 }
 
 .meal-details h4 {
+  font-size: 18px;
   margin: 0;
-  font-size: 16px;
+  font-weight: bold;
+  color: #333;
 }
 
 .meal-details p {
-  margin: 4px 0 0 0;
+  margin: 5px 0 0;
   font-size: 14px;
   color: #666;
-}
-
-.meal-section {
-  position: relative; /* Establishes a positioning context */
-  margin-bottom: 20px;
-}
-
-.meal-section h3 {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  font-size: 18px;
+  gap: 10px;
 }
 
-.more-options {
-  background: none;
-  border: none;
-  font-size: 18px;
-  color: #333;
-  cursor: pointer;
-  padding: 0;
-  margin-left: 10px; /* Adds some spacing to the left of the text */
-  position: relative;
-  left: -20px; /* Adjust this value to move further left */
+.meal-details .time-icon {
+  color: #FFC107; /* Yellow for time */
+}
+
+.meal-details .ingredients-icon {
+  color: #4CAF50; /* Green for ingredients */
 }
 
 .delete-button {
   background: none;
   border: none;
+  font-size: 20px;
+  color: #666;
   cursor: pointer;
-  font-size: 18px;
-  color: #ff0000;
-  margin-left: 10px;
 }
 
 .delete-button:hover {
-  transform: scale(1.1);
+  color: #FF5252;
 }
 
-/* Floating Button Container */
+
 .floating-button-container {
-  position: fixed;
-  bottom: 80px; /* Distance from the bottom of the screen */
-  right: 600px; /* Distance from the right side of the screen */
+  position: relative;
+  bottom: 50px; /* Adjust spacing from the bottom */
+  left: 300px; /* Adjust spacing from the right */
   z-index: 1000; /* Ensure it appears above other elements */
-  align-items: center;
 }
 
 .floating-button {
-  background-color: #4caf50; /* Green color for the button */
-  color: white;
+  background-color: #32cd32; /* Green color */
+  color: #fff;
   border: none;
   border-radius: 50%;
-  width: 60px;
+  width: 60px; /* Adjust the size of the button */
   height: 60px;
-  font-size: 24px;
+  font-size: 28px; /* Adjust the font size */
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
   cursor: pointer;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  transition: transform 0.2s ease-in-out;
 }
 
 .floating-button:hover {
-  transform: scale(1.1); /* Slight zoom effect on hover */
+  transform: scale(1.1);
 }
 
 .floating-options {
   position: absolute;
-  bottom: 80px; /* Distance above the floating button */
-  right: 0;
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  z-index: 1001; /* Ensure it appears above the button */
-  overflow: hidden;
+  bottom: 80px; /* Adjust spacing above the button */
+  left:-100px;
   display: flex;
   flex-direction: column;
+  gap: 10px; /* Space between the options */
 }
 
 .floating-option {
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #000;
   padding: 10px 15px;
-  background-color: white;
-  border: none;
-  text-align: left;
-  font-size: 16px;
-  color: #4caf50;
+  border-radius: 5px;
+  font-size: 14px;
   cursor: pointer;
-  width: 100%;
-  transition: background-color 0.2s ease-in-out;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .floating-option:hover {
-  background-color: #f1f1f1; /* Light grey background on hover */
-  color: #4caf50;
+  transform: translateY(-2px);
 }
+
+
 
 
 .meal-link {
@@ -360,16 +376,19 @@ button:active {
 
 
 .back-button {
-  background: none;
-  border: none;
-  font-size: 1rem;
-  color: #007bff;
-  cursor: pointer;
-  margin-bottom: 10px;
+  display: inline-block;
+  text-align: left;
+  margin-left: 10px; /* Adjust this to control how far it is from the edge */
+  font-size: 16px; /* Adjust the font size as needed */
+  background: none; /* Remove any default button background */
+  border: none; /* Remove the border */
+  color: green; /* Match the design's color */
+  cursor: pointer; /* Make it look clickable */
+  padding: 5px 0;
 }
 
 .back-button:hover {
-  text-decoration: underline;
+  text-decoration: underline; /* Optional hover effect */
 }
 
 
@@ -387,21 +406,26 @@ button:active {
 /* Search Input */
 .search-container {
   margin-bottom: 20px;
+  border: 1px solid #aaa;
+  border-radius: 8px; /* Rounded corners */
   position: relative;
+  width: 100%; /* Ensure it takes the full width of the parent container */
+  box-sizing: border-box; /* Include padding/border in the total width */
 }
 
 .search-input {
-  width: 100%;
+  width: 100%; /* Match the width of the container */
   padding: 10px 15px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  border: none; /* Remove additional border */
   font-size: 16px;
+  box-sizing: border-box; /* Include padding in the width */
 }
 
 .search-input::placeholder {
   color: #aaa;
   font-style: italic;
 }
+
 
 /* Popular Section */
 .popular-section {
@@ -477,11 +501,10 @@ button:active {
   margin-bottom: 10px;
 }
 
-
 .recipe-cards {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 15px; /* Slightly larger gap for better spacing */
   justify-content: space-between;
 }
 
@@ -490,7 +513,7 @@ button:active {
   text-decoration: none;
   color: inherit;
   border: 1px solid #ddd;
-  border-radius: 5px;
+  border-radius: 10px; /* Smooth rounded corners */
   background-color: #fff;
   overflow: hidden;
   cursor: pointer;
@@ -499,39 +522,51 @@ button:active {
 
 .recipe-card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .recipe-image {
   width: 100%;
-  height: 120px;
-  object-fit: cover;
+  height: 150px; /* Fixed height for uniformity */
+  object-fit: cover; /* Ensure images maintain aspect ratio */
+  border-radius: 10px 10px 0 0; /* Rounded corners for the top */
 }
 
 .recipe-info {
   padding: 10px;
+  text-align: center;
 }
 
 .recipe-info h4 {
   font-size: 16px;
-  margin: 0 0 5px;
+  font-weight: 600;
+  margin: 0 0 8px;
+  color: #333;
 }
 
 .recipe-details {
-  font-size: 12px;
-  color: #777;
+  font-size: 13px;
+  color: #666;
+  margin-top: 5px;
 }
 
 .recipe-card img {
   width: 100%;
-  height: auto;
-  border-radius: 8px;
+  height: 150px; /* Fixed height to match all images */
+  object-fit: cover;
+  border-radius: 10px 10px 0 0;
 }
 
 .recipe-info {
-  text-align: center;
-  margin-top: 10px;
+  margin-top: 8px;
 }
+
+
+.unsave-button:hover {
+  background-color: #e53935;
+  transform: translateY(-2px);
+}
+
 
 .save-button {
   margin-top: 10px;
@@ -779,6 +814,7 @@ button:active {
 .shopping-list-page {
   max-width: 390px;
   margin: 0 auto;
+  padding: 20px;
   font-family: Arial, sans-serif;
 }
 
@@ -826,6 +862,7 @@ button:active {
   transform-origin: left; /* Align the scaling with the left side */
   cursor: pointer; /* Change cursor to pointer for better UX */
 }
+
 
 
 .ingredient-details {

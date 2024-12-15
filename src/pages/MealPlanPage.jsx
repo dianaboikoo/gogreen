@@ -55,67 +55,66 @@ const MealPlanPage = () => {
 
   return (
     <div className="meal-plan-page">
-      <header className="meal-plan-header">
-        <button className="nav-button">{"<"}</button>
-        <div className="date-display">
-          <h2>Today</h2>
-          <p>{currentDate}</p>
-        </div>
-        <button className="nav-button">{">"}</button>
-      </header>
-
-      <div className="meal-plan-container">
-        {Object.keys(mealPlan).map((mealType, index) => (
-          <div key={index} className="meal-section">
-            <h3>
-              {mealType} <button className="more-options">...</button>
-            </h3>
-            <div className="meal-items">
-              {Object.entries(mealPlan[mealType]).map(([mealKey, meal]) => {
-                if (!meal || !meal.ID) return null; // Skip invalid meals
-                return (
-                  <MealItem
-                    key={mealKey}
-                    mealType={mealType}
-                    mealKey={mealKey}
-                    meal={meal}
-                    onDelete={handleDeleteMeal}
-                  />
-                );
-              })}
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* Floating Button and Options */}
-      <div className="floating-button-container">
-  <button
-    className="floating-button"
-    onClick={() => setShowOptions(!showOptions)}
-  >
-    +
-  </button>
-  {showOptions && (
-    <div className="floating-options">
-      <button
-        className="floating-option"
-        onClick={() => navigate("/saved")}
-      >
-        📖 Saved Recipes
-      </button>
-      <button
-        className="floating-option"
-        onClick={() => navigate("/search")}
-      >
-        🔍 Explore Recipes
-      </button>
+  <header className="meal-plan-header">
+    <button className="nav-button">{"<"}</button>
+    <div className="date-display">
+      <h2>Today</h2>
+      <p>{currentDate}</p>
     </div>
-  )}
+    <button className="nav-button">{">"}</button>
+  </header>
+
+  <div className="meal-plan-container">
+    {Object.keys(mealPlan).map((mealType, index) => (
+      <div key={index} className="meal-section">
+        <h3>{mealType}</h3>
+        <div className="meal-items">
+          {Object.entries(mealPlan[mealType]).map(([mealKey, meal]) => {
+            if (!meal || !meal.ID) return null; // Skip invalid meals
+            return (
+              <MealItem
+                key={mealKey}
+                mealType={mealType}
+                mealKey={mealKey}
+                meal={meal}
+                onDelete={handleDeleteMeal}
+              />
+            );
+          })}
+        </div>
+      </div>
+    ))}
+  </div>
+
+  {/* Floating Button and Options */}
+  <div className="floating-button-container">
+    <button
+      className="floating-button"
+      onClick={() => setShowOptions(!showOptions)}
+    >
+      +
+    </button>
+    {showOptions && (
+      <div className="floating-options">
+        <button
+          className="floating-option"
+          onClick={() => navigate("/saved")}
+        >
+          📖 Saved Recipes
+        </button>
+        <button
+          className="floating-option"
+          onClick={() => navigate("/search")}
+        >
+          🔍 Explore Recipes
+        </button>
+      </div>
+    )}
+  </div>
+
+  <NavBar />
 </div>
 
-      <NavBar />
-    </div>
   );
 };
 
@@ -129,7 +128,7 @@ const MealItem = ({ mealType, mealKey, meal, onDelete }) => {
         <div className="meal-details">
           <h4>{meal.Name}</h4>
           <p>
-            🕒 {meal.TimeOfCooking} • 🍴 {meal.NumberOfIngredients} ingredients
+            🕒 {meal.TimeOfCooking} <p></p> 🍴 {meal.NumberOfIngredients} ingredients
           </p>
         </div>
       </Link>

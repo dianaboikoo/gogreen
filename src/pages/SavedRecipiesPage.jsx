@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import "../styles/styles.css";
 import NavBar from "../components/NavBar";
 
 const SavedRecipesPage = () => {
   const [savedRecipes, setSavedRecipes] = useState([]);
+  const navigate = useNavigate(); 
 
   useEffect(() => {
     const fetchSavedRecipes = async () => {
@@ -51,7 +53,11 @@ const SavedRecipesPage = () => {
 
   return (
     <div className="saved-recipes-page">
-      <h3>Saved Recipes</h3>
+        <button className="back-button" onClick={() => navigate(-1)}>
+          ← Back
+        </button>
+      <h3>Saved Recipes </h3>
+      
       <div className="recipe-cards">
         {savedRecipes.map((recipe) => (
           <div key={recipe.id} className="recipe-card">
