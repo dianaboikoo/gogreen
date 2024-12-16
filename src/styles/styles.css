@@ -886,11 +886,155 @@ body, html {
 }
 
 
+/*Onboarding */ 
+.onboarding-page{
+    max-width: 390px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+}
+.onboarding-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 390px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+  font-family: Arial, sans-serif;
+}
 
+/* Progress Bar */
+.progress-bar {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px 0;
+}
 
+.progress-dot {
+  flex: 1;
+  height: 3px;
+  background-color: #d3d3d3;
+  margin: 0 2px;
+}
 
+.progress-dot.active {
+  background-color: #66bb6a; /* Green color for active dots */
+}
 
+/* Header */
+.onboarding-container h2 {
+  text-align: center;
+  font-size: 22px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
 
+/* Options Container */
+.step-content {
+  width: 100%;
+}
 
+.step-content .options {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
 
+.option-button {
+  border: 1px solid #d3d3d3;
+  border-radius: 25px;
+  padding: 8px 15px;
+  background-color: #fff;
+  color: #000;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
 
+.option-button.selected {
+  background-color: #66bb6a;
+  color: #fff;
+  border-color: #66bb6a;
+}
+
+.option-button:hover {
+  border-color: #66bb6a;
+}
+
+/* Navigation Buttons */
+.navigation-buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: auto;
+}
+
+.nav-button {
+  background-color: transparent;
+  color: #66bb6a;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.nav-button.prev {
+  margin-right: auto;
+}
+
+.nav-button.skip {
+  margin-left: auto;
+}
+
+.nav-button.next {
+  background-color: #66bb6a;
+  color: #fff;
+  padding: 10px 40px;
+  border-radius: 25px;
+  font-size: 16px;
+}
+
+.skip-button {
+  color: #66bb6a;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+.navigation-next-button {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+/* Next Button */
+.next-button {
+  background-color: #66bb6a;
+  color: #fff;
+  font-size: 18px;
+  border: none;
+  border-radius: 30px;
+  padding: 15px 0;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  cursor: pointer;
+  margin-top: 40px;
+  align-items: center;
+}
+
+.next-button:hover {
+  background-color: #57a55a;
+}
+
+/* Utility */
+.text-center {
+  text-align: center;
+}

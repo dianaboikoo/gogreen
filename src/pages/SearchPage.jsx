@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../styles/styles.css";
 import NavBar from "../components/NavBar";
+import SearchBar from "../components/SearchBar";
 
 const SearchPage = () => {
   const [recipes, setRecipes] = useState([]);
@@ -41,10 +42,6 @@ const SearchPage = () => {
     fetchRecipes();
     fetchSavedRecipes();
   }, []);
-
-  const handleSearch = (e) => {
-    setSearchQuery(e.target.value);
-  };
 
   const handleSaveToggle = async (recipe) => {
     const isSaved = savedRecipes[recipe.id];
@@ -88,46 +85,38 @@ const SearchPage = () => {
 
   return (
     <div className="search-page">
-      {/* Search Input */}
-      <div className="search-container">
-        <input
-          type="text"
-          className="search-input"
-          placeholder="Search"
-          value={searchQuery}
-          onChange={handleSearch}
-        />
-      </div>
+      {/* SearchBar Component */}
+      <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
 
       {/* Popular Section */}
       <div className="popular-section">
         <h3>Popular</h3>
-         <div className="popular-categories">
-         <div className="category-card">
-      <img src="/chicken_section.jpg" alt="Chicken" className="category-image" />
-      <span>Chicken</span>
-    </div>
-    <div className="category-card">
-      <img src="/healthy_section.jpg" alt="Healthy" className="category-image" />
-      <span>Healthy</span>
-    </div>
-    <div className="category-card">
-      <img src="/pasta_section.jpg" alt="Pasta" className="category-image" />
-      <span>Pasta</span>
-    </div>
-    <div className="category-card">
-      <img src="/salmon_section.jpg" alt="Salmon" className="category-image" />
-      <span>Salmon</span>
-    </div>
-    <div className="category-card">
-      <img src="/breakfast_section.jpg" alt="Breakfast" className="category-image" />
-      <span>Breakfast</span>
-    </div>
-    <div className="category-card">
-      <img src="/dinner_section.jpg" alt="Dinner" className="category-image" />
-      <span>Dinner</span>
-      </div>
-    </div>
+        <div className="popular-categories">
+          <div className="category-card">
+            <img src="/chicken_section.jpg" alt="Chicken" className="category-image" />
+            <span>Chicken</span>
+          </div>
+          <div className="category-card">
+            <img src="/healthy_section.jpg" alt="Healthy" className="category-image" />
+            <span>Healthy</span>
+          </div>
+          <div className="category-card">
+            <img src="/pasta_section.jpg" alt="Pasta" className="category-image" />
+            <span>Pasta</span>
+          </div>
+          <div className="category-card">
+            <img src="/salmon_section.jpg" alt="Salmon" className="category-image" />
+            <span>Salmon</span>
+          </div>
+          <div className="category-card">
+            <img src="/breakfast_section.jpg" alt="Breakfast" className="category-image" />
+            <span>Breakfast</span>
+          </div>
+          <div className="category-card">
+            <img src="/dinner_section.jpg" alt="Dinner" className="category-image" />
+            <span>Dinner</span>
+          </div>
+        </div>
       </div>
 
       {/* Recommended Section */}
