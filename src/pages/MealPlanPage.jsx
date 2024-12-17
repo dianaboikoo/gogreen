@@ -53,6 +53,8 @@ const MealPlanPage = () => {
     return <p>Loading...</p>;
   }
 
+  const mealTypeOrder = ["Breakfast", "Lunch", "Dinner"]; // Fixed order
+  
   return (
     <div className="meal-plan-page">
   <header className="meal-plan-header">
@@ -64,8 +66,11 @@ const MealPlanPage = () => {
     <button className="nav-button">{">"}</button>
   </header>
 
-  <div className="meal-plan-container">
-    {Object.keys(mealPlan).map((mealType, index) => (
+
+<div className="meal-plan-container">
+  {Object.keys(mealPlan)
+    .sort((a, b) => mealTypeOrder.indexOf(a) - mealTypeOrder.indexOf(b)) // Sort meal types
+    .map((mealType, index) => (
       <div key={index} className="meal-section">
         <h3>{mealType}</h3>
         <div className="meal-items">
@@ -84,7 +89,8 @@ const MealPlanPage = () => {
         </div>
       </div>
     ))}
-  </div>
+</div>
+
 
   {/* Floating Button and Options */}
   <div className="floating-button-container">
