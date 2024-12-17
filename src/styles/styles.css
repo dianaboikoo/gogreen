@@ -1038,3 +1038,112 @@ body, html {
 .text-center {
   text-align: center;
 }
+
+
+
+/*SIGN UP */
+
+.page {
+  max-width: 390px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+}
+
+/* Form Container */
+form {
+  width: 100%;
+  max-width: 400px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 25px;
+  box-sizing: border-box;
+}
+
+/* Headings */
+h1 {
+  text-align: center;
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Labels */
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #444;
+}
+
+/* Input Fields */
+input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease;
+}
+
+input:focus {
+  border-color: #4caf50;
+  outline: none;
+}
+
+/* Buttons */
+.btns button {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+  background-color: #4caf50;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btns button:hover {
+  background-color: #45a047;
+}
+
+.btns button:disabled {
+  background-color: #9e9e9e;
+  cursor: not-allowed;
+}
+
+/* Error Message */
+.error-message {
+  color: red;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+/* Links */
+.text-center {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 0.9rem;
+}
+
+.text-center a {
+  color: #4caf50;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.text-center a:hover {
+  text-decoration: underline;
+}
+
+/* Accessibility and Focus */
+button:focus,
+input:focus {
+  outline: 2px solid #4caf50;
+  outline-offset: 2px;
+}

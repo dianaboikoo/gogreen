@@ -1,25 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import QuestionCard from "../components/QuestionCard";
 import ProgressBar from "../components/ProgressBar";
 import { useNavigate } from "react-router-dom";
+import { getDatabase, ref, get } from "firebase/database";
 import "../styles/styles.css";
 
 const Onboarding = () => {
   const [step, setStep] = useState(1);
-  const totalSteps = 7;
+  const [questions, setQuestions] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [selectedOptions, setSelectedOptions] = useState([]);
+  const totalSteps = questions.length; // Dynamic steps based on fetched questions
   const navigate = useNavigate();
 
-  const questions = [
-    { question: "What goals would you like to start with?", options: ["Eat healthier", "Save time and simplify meal prep", "Incorporate more whole foods", "Build a sustainable meal plan", "Support fitness and energy needs"] },
-    { question: "What meals do you typically plan?", options: ["Breakfast", "Lunch", "Dinner", "Snacks", "Takeout"] },
-    { question: "Do you have a special diet?", options: ["Keto", "Vegan", "Paleo", "Low Carb", "Vegetarian", "Dairy Free", "Pescatarian", "Gluten Free", "Mediterranean", "Ovo Vegetarian", "Lacto Vegetarian", "Ovo-Lacto Vegetarian"] },
-    { question: "Are you avoiding any ingredients?", options: ["Egg", "Fish", "Milk", "Wheat", "Yeast", "Celery", "Gluten", "Sesame", "Alcohol", "Mollusc", "Mustard", "Soybean", "Lactose", "Caffeine", "Tree Nut", "Groundnut", "Sulphites", "Crustacean"] },
-    { question: "Any cuisines you like?", options: ["American", "Mediterranean", "Mexican", "Asian", "Italian", "Chinese", "Indian", "Japanese"] },
-    { question: "How would you rate your cooking skills?", options: ["Beginner", "Intermediate", "Advanced"] },
-    { question: "Do you have any allergies?", options: ["Dairy", "Egg", "Fish", "Sulphites", "Mustard", "Flax", "Sesame", "Gluten", "Meat", "Lupin", "Peanuts", "Soya", "Shellfish", "Tree nuts", "Celery"] },
-  ];
-
-  const [selectedOptions, setSelectedOptions] = useState([]);
+  // Fetch questions and options from Firebase
+  useEffect(() => {
+    const fetchQuestions = async () => {
+      const db = getDatabase();
+      const questionsRef = ref(db, "onboarding/steps"); // Path in your database
+      try {
+        const snapshot = await get(questionsRef);
+        if (snapshot.exists()) {
+          setQuestions(snapshot.val());
+        } else {
+          console.error("No data available");
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchQuestions();
+  }, []);
 
   const handleOptionSelect = (option) => {
     setSelectedOptions((prevSelected) =>
@@ -33,8 +46,7 @@ const Onboarding = () => {
     if (step < totalSteps) {
       setStep(step + 1);
       setSelectedOptions([]); // Reset selection for new step
-    }
-    else {
+    } else {
       navigate("/mealplan"); // Navigate to MealPlan page when finished
     }
   };
@@ -47,18 +59,24 @@ const Onboarding = () => {
   };
 
   const handleSkip = () => {
-    if (step < totalSteps) {
+   if (step < totalSteps) {
       setStep(step + 1);
       setSelectedOptions([]); // Reset selection for new step
+    } else {
+      navigate("/mealplan"); // Navigate to MealPlan page when finished
     }
   };
+
+  if (loading) {
+    return <div>Loading...</div>; // Show a loading state while fetching data
+  }
 
   return (
     <div className="onboarding-container">
       {/* Progress Bar */}
       <ProgressBar step={step} totalSteps={totalSteps} />
 
-<div className="navigation-buttons">
+      <div className="navigation-buttons">
         {step > 1 && (
           <button className="nav-button prev" onClick={handlePrevious}>
             Previous
@@ -70,12 +88,14 @@ const Onboarding = () => {
       </div>
 
       {/* Question Content */}
-      <QuestionCard
-        question={questions[step - 1]?.question}
-        options={questions[step - 1]?.options || []}
-        onOptionSelect={handleOptionSelect}
-        selectedOptions={selectedOptions}
-      />
+      {questions.length > 0 && (
+        <QuestionCard
+          question={questions[step - 1]?.question}
+          options={questions[step - 1]?.options || []}
+          onOptionSelect={handleOptionSelect}
+          selectedOptions={selectedOptions}
+        />
+      )}
 
       {/* Navigation Buttons */}
       <div className="navigation-next-button">
